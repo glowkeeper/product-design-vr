@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 630693340
+  GlobalObjectIdHash: 78162200
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   left: {fileID: 1758958770}
   right: {fileID: 1186116922}
   meshToDisable:
-  - {fileID: -7511558181221131132, guid: 0737fba2bfc8a4aa5b9525ec4c86844b, type: 3}
+  - {fileID: 461937822221817392}
   - {fileID: 1499677135}
   - {fileID: 1287643285}
 --- !u!114 &696953433843853343
@@ -562,6 +562,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0737fba2bfc8a4aa5b9525ec4c86844b, type: 3}
+--- !u!23 &461937822221817392 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 0737fba2bfc8a4aa5b9525ec4c86844b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272468799726799540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1594853559684738399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0737fba2bfc8a4aa5b9525ec4c86844b,
