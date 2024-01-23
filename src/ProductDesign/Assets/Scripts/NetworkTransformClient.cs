@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode.Components;
 
-public class NetweorkTransformClient : NetworkTransform
+public class NetworkTransformClient : NetworkTransform
 {
    protected override bool OnIsServerAuthoritative() {
     return false;
