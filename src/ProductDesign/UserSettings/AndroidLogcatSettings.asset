@@ -1,13 +1,32 @@
 {
-    "m_SelectedDeviceId": "1WMHHA43L71451",
+    "m_SelectedDeviceId": "1WMHHB41J01437",
     "m_SelectedProcess": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "1WMHHB41J01437",
+        "name": "com.Unity.CreateWithVR",
+        "processId": 6130,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownProcessesForSerialization": [],
+    "m_KnownProcessesForSerialization": [
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 6635,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 7937,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 6130,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {
