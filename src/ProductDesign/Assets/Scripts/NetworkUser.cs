@@ -14,6 +14,7 @@ public class NetworkUser : NetworkBehaviour
     [SerializeField] private Renderer[] meshToDisable;
 
     public override void OnNetworkSpawn() {
+        
         base.OnNetworkSpawn();
         if (IsOwner) {
             foreach (var mesh in meshToDisable)
@@ -23,7 +24,6 @@ public class NetworkUser : NetworkBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (IsOwner) {

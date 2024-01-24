@@ -263,9 +263,10 @@ MonoBehaviour:
   left: {fileID: 1758958770}
   right: {fileID: 1186116922}
   meshToDisable:
-  - {fileID: 461937822221817392}
   - {fileID: 1499677135}
   - {fileID: 1287643285}
+  - {fileID: 461937822221817392}
+  - {fileID: 461937822221817392}
 --- !u!114 &696953433843853343
 MonoBehaviour:
   m_ObjectHideFlags: 0
