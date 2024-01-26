@@ -14,23 +14,18 @@ using Unity.Networking.Transport.Relay;
 
 using Unity.Services.Core;
 using Unity.Services.Authentication;
+
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
+
+using Unity.Services.Vivox;
 
 public class NetworkConnect : MonoBehaviour
 {
     [SerializeField] private int maxConnections = 4;
     [SerializeField] private TMP_InputField joinCodeInput;
+
     private string connectionType = "dtls";
-
-    // Start is called before the first frame update
-    private async void Start()
-    {
-        await UnityServices.InitializeAsync();
-
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        Debug.Log("Signed in with id: " + AuthenticationService.Instance.PlayerId);
-    }
 
     public async void Create()
     {
@@ -47,6 +42,7 @@ public class NetworkConnect : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(serverData);
 
             NetworkManager.Singleton.StartHost();
+            VivoxVoiceManager.Instance.SignInToVivox();
 
         } catch (RelayServiceException e) {
             Debug.Log(e);
@@ -66,7 +62,8 @@ public class NetworkConnect : MonoBehaviour
                 RelayServerData serverData = new RelayServerData(joinAllocation, connectionType);
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(serverData);
 
-                NetworkManager.Singleton.StartClient();
+                NetworkManager.Singleton.StartClient();                  
+                VivoxVoiceManager.Instance.SignInToVivox();              
 
             } catch (RelayServiceException e) {
                 Debug.Log(e);
