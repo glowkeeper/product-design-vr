@@ -8245,7 +8245,6 @@ GameObject:
   - component: {fileID: 1477327548}
   - component: {fileID: 1477327547}
   - component: {fileID: 1477327546}
-  - component: {fileID: 1477327550}
   - component: {fileID: 1477327551}
   m_Layer: 0
   m_Name: Network Manager
@@ -8333,19 +8332,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1477327550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477327545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32bc83debafc445ca9f72c148afcd859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceChannel: 1
 --- !u!114 &1477327551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8360,6 +8346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxConnections: 4
   joinCodeInput: {fileID: 1994798787}
+  voiceChannel: 1
 --- !u!1 &1515787574
 GameObject:
   m_ObjectHideFlags: 0

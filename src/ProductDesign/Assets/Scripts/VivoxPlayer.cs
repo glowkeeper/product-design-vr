@@ -34,6 +34,7 @@ public class VivoxPlayer : MonoBehaviour
         // Channel3DProperties props3D = new Channel3DProperties();
         // await VivoxService.Instance.JoinPositionalChannelAsync(voiceChannel, ChatCapability.AudioOnly, props3D);
         VivoxService.Instance.JoinGroupChannelAsync(voiceChannel, ChatCapability.AudioOnly);
+        VivoxService.Instance.SetChannelTransmissionModeAsync(TransmissionMode.Single, voiceChannel);
 
         // var cid = new Channel(voiceChannel, ChannelType.Positional);
         // _chan = _vvm.LoginSession.GetChannelSession(cid);

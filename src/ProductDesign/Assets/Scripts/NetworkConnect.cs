@@ -24,8 +24,43 @@ public class NetworkConnect : MonoBehaviour
 {
     [SerializeField] private int maxConnections = 4;
     [SerializeField] private TMP_InputField joinCodeInput;
+    [SerializeField] private string voiceChannel = "1";
+    
+    //private float _nextUpdate = 0;
+
+    private GameObject xrCam; //position of our Main Camera
 
     private string connectionType = "dtls";
+
+    void Start()
+    {        
+        VivoxService.Instance.LoggedIn += OnUserLoggedIn;
+        VivoxService.Instance.LoggedOut += OnUserLoggedOut;
+        xrCam =  GameObject.FindWithTag("MainCamera");
+    }
+
+    void OnUserLoggedIn()
+    {
+        Debug.Log("Joining Vivox voice channel: " + voiceChannel);
+        //_vvm.JoinChannel(voiceChannel, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.AudioOnly);
+        //_vvm.JoinChannel(voiceChannel, ChannelType.Positional, VivoxVoiceManager.ChatCapability.AudioOnly);
+
+        // Channel3DProperties props3D = new Channel3DProperties();
+        // await VivoxService.Instance.JoinPositionalChannelAsync(voiceChannel, ChatCapability.AudioOnly, props3D);
+        VivoxService.Instance.JoinGroupChannelAsync(voiceChannel, ChatCapability.AudioOnly);
+        VivoxService.Instance.SetChannelTransmissionModeAsync(TransmissionMode.Single, voiceChannel);
+
+        // var cid = new Channel(voiceChannel, ChannelType.Positional);
+        // _chan = _vvm.LoginSession.GetChannelSession(cid);
+    }
+
+    void OnUserLoggedOut()
+    {
+        Debug.Log("Disconnecting from voice channel " + voiceChannel);
+        VivoxService.Instance.LeaveAllChannelsAsync();
+        Debug.Log("Disconnecting from Vivox");
+        VivoxService.Instance.LogoutAsync();  
+    }
 
     public async void Create()
     {
