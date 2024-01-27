@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "1WMHHA43L71451",
+    "m_SelectedDeviceId": "1WMHHB41J01437",
     "m_SelectedProcess": {
-        "deviceId": "1WMHHA43L71451",
+        "deviceId": "1WMHHB41J01437",
         "name": "com.Unity.CreateWithVR",
-        "processId": 9637,
+        "processId": 5380,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,55 +11,31 @@
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 6182,
-            "exited": true
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 7077,
-            "exited": true
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.oculus.shellenv",
-            "processId": 2017,
-            "exited": true
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 8851,
-            "exited": true
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 4560,
-            "exited": false
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 6684,
-            "exited": false
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
             "processId": 7693,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
             "processId": 8532,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
             "processId": 9637,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.oculus.shellenv",
+            "processId": 1981,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 5610,
             "exited": false
         },
         {
@@ -96,6 +72,12 @@
             "deviceId": "1WMHHB41J01437",
             "name": "com.Unity.CreateWithVR",
             "processId": 7013,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 5380,
             "exited": false
         }
     ],
