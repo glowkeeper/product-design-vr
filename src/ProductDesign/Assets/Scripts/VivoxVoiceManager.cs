@@ -8,8 +8,12 @@ using Unity.Services.Authentication;
 
 public class VivoxVoiceManager : MonoBehaviour
 {  
+    [SerializeField] private string voiceChannel = "1";
+
     static object m_Lock = new object();
     static VivoxVoiceManager m_Instance;
+
+    private GameObject xrCam; //position of our Main Camera
 
     public static VivoxVoiceManager Instance
     {
@@ -45,6 +49,13 @@ public class VivoxVoiceManager : MonoBehaviour
         await VivoxService.Instance.InitializeAsync();
         Debug.Log("Signed in with id: " + AuthenticationService.Instance.PlayerId);
     }
+
+    void Start()
+    {        
+        VivoxService.Instance.LoggedIn += OnUserLoggedIn;
+        VivoxService.Instance.LoggedOut += OnUserLoggedOut;
+        xrCam =  GameObject.FindWithTag("MainCamera");
+    }
     
     public async void SignInToVivox()
     {
@@ -52,7 +63,32 @@ public class VivoxVoiceManager : MonoBehaviour
         options.DisplayName = AuthenticationService.Instance.PlayerId;
         options.EnableTTS = true;    
         await VivoxService.Instance.LoginAsync(options);
+        await VivoxService.Instance.JoinGroupChannelAsync(voiceChannel, ChatCapability.AudioOnly);
+        await VivoxService.Instance.SetChannelTransmissionModeAsync(TransmissionMode.Single, voiceChannel);
 
         Debug.Log("Signed into Vivox with Display Name: " + options.DisplayName);
-    }    
+    }   
+
+    void OnUserLoggedIn()
+    {
+        Debug.Log("Joining Vivox voice channel: " + voiceChannel);
+        //_vvm.JoinChannel(voiceChannel, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.AudioOnly);
+        //_vvm.JoinChannel(voiceChannel, ChannelType.Positional, VivoxVoiceManager.ChatCapability.AudioOnly);
+
+        // Channel3DProperties props3D = new Channel3DProperties();
+        // await VivoxService.Instance.JoinPositionalChannelAsync(voiceChannel, ChatCapability.AudioOnly, props3D);
+        // VivoxService.Instance.JoinGroupChannelAsync(voiceChannel, ChatCapability.AudioOnly);
+        // VivoxService.Instance.SetChannelTransmissionModeAsync(TransmissionMode.Single, voiceChannel);
+
+        // var cid = new Channel(voiceChannel, ChannelType.Positional);
+        // _chan = _vvm.LoginSession.GetChannelSession(cid);
+    }
+
+    void OnUserLoggedOut()
+    {
+        Debug.Log("Disconnecting from voice channel " + voiceChannel);
+        VivoxService.Instance.LeaveAllChannelsAsync();
+        Debug.Log("Disconnecting from Vivox");
+        VivoxService.Instance.LogoutAsync();  
+    } 
 }

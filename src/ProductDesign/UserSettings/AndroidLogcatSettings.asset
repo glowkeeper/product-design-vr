@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "1WMHHA43L71451",
         "name": "com.Unity.CreateWithVR",
-        "processId": 8532,
+        "processId": 9637,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -54,6 +54,12 @@
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
             "processId": 8532,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 9637,
             "exited": false
         },
         {
@@ -147,7 +153,7 @@
         "AutoCapture": true
     },
     "m_FilterOptions": {
-        "m_Filter": " ",
+        "m_Filter": "Vivox",
         "m_UseRegularExpressions": true,
         "m_MatchCase": false
     },
