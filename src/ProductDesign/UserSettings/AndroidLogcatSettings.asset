@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "1WMHHB41J01437",
+    "m_SelectedDeviceId": "1WMHHA43L71451",
     "m_SelectedProcess": {
-        "deviceId": "1WMHHB41J01437",
+        "deviceId": "1WMHHA43L71451",
         "name": "com.Unity.CreateWithVR",
-        "processId": 5380,
+        "processId": 12205,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,31 +11,79 @@
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 7693,
+            "processId": 7167,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 8532,
+            "processId": 7688,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 9637,
+            "processId": 8172,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.oculus.shellenv",
-            "processId": 1981,
+            "processId": 2088,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 5385,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 5610,
+            "processId": 6262,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 6931,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 8556,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 9267,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 9832,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 10869,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 11668,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 12205,
             "exited": false
         },
         {
@@ -78,6 +126,42 @@
             "deviceId": "1WMHHB41J01437",
             "name": "com.Unity.CreateWithVR",
             "processId": 5380,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 6320,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 9187,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 5227,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 6457,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 7543,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 9505,
             "exited": false
         }
     ],
@@ -135,7 +219,7 @@
         "AutoCapture": true
     },
     "m_FilterOptions": {
-        "m_Filter": "Vivox",
+        "m_Filter": "Grabbin",
         "m_UseRegularExpressions": true,
         "m_MatchCase": false
     },
