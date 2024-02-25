@@ -10,20 +10,23 @@ public class NetworkItem : NetworkBehaviour
     // private NetworkObject m_SpawnedNetworkObject;
 
     private bool m_HasGrabbed = false;
+    private bool m_HasLetGo = false;
+    private bool m_DidGrab = false;
 
-    private ulong m_ClientID;
+    private Vector3 m_Position;
+    private Quaternion m_Rotation;
+    private Vector3 m_Scale;
 
     public override void OnNetworkSpawn()
     {
-        //m_SpawnedNetworkObject = gameObject.GetComponent<NetworkObject>();
-        m_ClientID = NetworkManager.Singleton.LocalClientId;
-        Debug.Log("Client ID: " + m_ClientID);
+        m_Position = transform.position;
+        m_Rotation = transform.rotation;
+        m_Scale = transform.localScale;
 
         m_GrabInteractable = gameObject.GetComponent<XRGrabInteractable>();
 
         if (m_GrabInteractable != null)
         {
-            Debug.Log("Able to Grab");
             m_GrabInteractable.selectEntered.AddListener(OnGrabbed);            
             m_GrabInteractable.selectExited.AddListener(OnLetGo);
 
@@ -34,53 +37,62 @@ public class NetworkItem : NetworkBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        Debug.Log("Trying to do some Grabbing");
+        //Debug.Log("Trying to do some Grabbing");
         m_HasGrabbed = true;
     }
 
     private void OnLetGo(SelectExitEventArgs args)
     {
-        Debug.Log("Trying to Let Go");        
-        m_HasGrabbed = false;
-    }       
-
-    // [ServerRpc(RequireOwnership = false)]
-    // private void RequestOwnershipServerRpc()
-    // {
-    //     Debug.Log("Request ownership for Grabbing" + m_ClientID);
-    //     m_SpawnedNetworkObject.ChangeOwnership(m_ClientID);
-    // }
+        //Debug.Log("Trying to Let Go");        
+        m_HasLetGo = true;
+    }  
 
     private void FixedUpdate() 
    {
         if (m_HasGrabbed) 
-        {
-            Debug.Log("Calling Send RPC" + transform.position.ToString() + transform.rotation.ToString() + transform.localScale.ToString());
-            SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale);
+        { 
+            SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale);            
+
+        } else {
+
+            if ( m_HasLetGo ) {
+                
+                if( transform.hasChanged ) {
+
+                    SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale);
+
+                } else {
+                    
+                    m_HasLetGo = false;
+                    
+                }
+            } else {                
+                
+                transform.position = m_Position;
+                transform.rotation = m_Rotation;
+                transform.localScale = m_Scale;
+
+            }
         }
    }
 
    [ServerRpc(RequireOwnership = false)]
    private void SendInfoToServerRpc(Vector3 position, Quaternion rotation, Vector3 scale)
    {        
-        var networkTime = NetworkManager.Singleton.ServerTime.TimeAsFloat;
-        Debug.Log("Sending info to clients" + position.ToString() + rotation.ToString() + scale.ToString() + networkTime.ToString());
-        SendInfoToClientRpc(position, rotation, scale, networkTime);
+        // var networkTime = NetworkManager.Singleton.ServerTime.TimeAsFloat;
+        // Debug.Log("Sending info to clients" + position.ToString() + rotation.ToString() + scale.ToString());
+        SendInfoToClientRpc(position, rotation, scale);
    }
 
    [ClientRpc]
-   private void SendInfoToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale, float networkTime)
+   private void SendInfoToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale)
    {
-        Debug.Log("Receiving info from server" + position.ToString() + rotation.ToString() + scale.ToString() + networkTime.ToString());
-        if( !m_HasGrabbed ) {            
-            DoMove(position, rotation, scale, networkTime);
-        }
-   }
+        // Debug.Log("Receiving info from server" + position.ToString() + rotation.ToString() + scale.ToString());
+        if( !m_HasGrabbed ) {   
 
-   private void DoMove(Vector3 position, Quaternion rotation, Vector3 scale, float networkTime) 
-   {
-        transform.position = position;
-        transform.rotation = rotation;
-        transform.localScale = scale;
+            m_Position = position; 
+            m_Rotation = rotation;
+            m_Scale = scale;
+        }
    }
 }
