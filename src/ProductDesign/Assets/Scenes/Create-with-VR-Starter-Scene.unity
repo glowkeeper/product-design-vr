@@ -1118,7 +1118,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216286419}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &225783805
+--- !u!1 &227272482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1126,9 +1126,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 225783808}
-  - component: {fileID: 225783806}
-  - component: {fileID: 225783807}
+  - component: {fileID: 227272485}
+  - component: {fileID: 227272483}
+  - component: {fileID: 227272484}
   m_Layer: 0
   m_Name: NetworkSpawner
   m_TagString: Untagged
@@ -1136,33 +1136,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &225783806
+--- !u!114 &227272483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225783805}
+  m_GameObject: {fileID: 227272482}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4214076517
+  GlobalObjectIdHash: 1886720168
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 0
---- !u!114 &225783807
+--- !u!114 &227272484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225783805}
+  m_GameObject: {fileID: 227272482}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04a00db0f386a4f6d99155731b677e4d, type: 3}
@@ -1171,13 +1171,13 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 7513548788293097748, guid: 016bac39fa3d341fca740e5672a94484,
     type: 3}
   DestroyWithSpawner: 1
---- !u!4 &225783808
+--- !u!4 &227272485
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225783805}
+  m_GameObject: {fileID: 227272482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.214669, y: 0.594101, z: 187.15999}
@@ -12726,4 +12726,4 @@ SceneRoots:
   - {fileID: 1076601407}
   - {fileID: 1143143442}
   - {fileID: 802096360}
-  - {fileID: 225783808}
+  - {fileID: 227272485}

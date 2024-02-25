@@ -9,7 +9,7 @@ public class NetworkSpawner : NetworkBehaviour
         
         [SerializeField] private GameObject prefabToSpawn;
         [SerializeField] private bool DestroyWithSpawner = true;
-        private XRGrabInteractable m_GrabInteractable;
+        //private XRGrabInteractable m_GrabInteractable;
         private GameObject m_PrefabInstance;
         private NetworkObject m_SpawnedNetworkObject;
         

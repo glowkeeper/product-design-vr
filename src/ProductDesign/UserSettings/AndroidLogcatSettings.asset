@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "1WMHHA43L71451",
         "name": "com.Unity.CreateWithVR",
-        "processId": 12205,
+        "processId": 13612,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,79 +11,67 @@
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 7167,
+            "processId": 12205,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 7688,
-            "exited": true
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 8172,
+            "processId": 5474,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.oculus.shellenv",
-            "processId": 2088,
+            "processId": 2156,
             "exited": false
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 5385,
+            "processId": 6523,
             "exited": true
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 6262,
+            "processId": 8255,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 9867,
             "exited": false
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 6931,
+            "processId": 10499,
             "exited": false
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 8556,
+            "processId": 11078,
             "exited": false
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 9267,
+            "processId": 11873,
             "exited": false
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 9832,
+            "processId": 12635,
             "exited": false
         },
         {
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
-            "processId": 10869,
-            "exited": false
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 11668,
-            "exited": false
-        },
-        {
-            "deviceId": "1WMHHA43L71451",
-            "name": "com.Unity.CreateWithVR",
-            "processId": 12205,
+            "processId": 13612,
             "exited": false
         },
         {
@@ -219,7 +207,7 @@
         "AutoCapture": true
     },
     "m_FilterOptions": {
-        "m_Filter": "Grabbin",
+        "m_Filter": "Receiving",
         "m_UseRegularExpressions": true,
         "m_MatchCase": false
     },
