@@ -5,10 +5,7 @@ using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class NetworkItem : NetworkBehaviour
-{    
-    [SerializeField] private GameObject prefabToSpawn;
-    [SerializeField] private bool DestroyWithSpawner = true;
-    
+{        
     private GameObject m_PrefabInstance;
     private NetworkObject m_SpawnedNetworkObject;
     private XRGrabInteractable m_GrabInteractable;
@@ -16,7 +13,6 @@ public class NetworkItem : NetworkBehaviour
 
     private bool m_HasGrabbed = false;
     private bool m_HasLetGo = false;
-    private bool m_DidGrab = false;
 
     private Vector3 m_Position;
     private Quaternion m_Rotation;
@@ -24,6 +20,12 @@ public class NetworkItem : NetworkBehaviour
 
     void Start() {
 
+        
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        // Only the server spawns
         m_Position = transform.position;
         m_Rotation = transform.rotation;
         m_Scale = transform.localScale;
@@ -37,35 +39,8 @@ public class NetworkItem : NetworkBehaviour
 
         } else {
             Debug.Log("Cannot Grab");
-        }
+        }   
     }
-
-    public override void OnNetworkSpawn()
-    {
-        // Only the server spawns
-        if (IsServer && prefabToSpawn != null)
-        {
-            var clientID = NetworkManager.Singleton.LocalClientId;
-            m_PrefabInstance = Instantiate(prefabToSpawn);
-
-            // Optional, this example applies the spawner's position and rotation to the new instance
-            m_PrefabInstance.transform.position = transform.position;
-            m_PrefabInstance.transform.rotation = transform.rotation;
-
-            // Get the instance's NetworkObject and Spawn
-            m_SpawnedNetworkObject = m_PrefabInstance.GetComponent<NetworkObject>();
-            m_SpawnedNetworkObject.SpawnWithOwnership(clientID);
-        }      
-    }
-
-    public override void OnNetworkDespawn()
-        {
-            if (IsServer && DestroyWithSpawner && m_SpawnedNetworkObject != null && m_SpawnedNetworkObject.IsSpawned)
-            {
-                m_SpawnedNetworkObject.Despawn();
-            }
-            base.OnNetworkDespawn();
-        }
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
