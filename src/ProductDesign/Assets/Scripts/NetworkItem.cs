@@ -6,10 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class NetworkItem : NetworkBehaviour
 {        
-    private GameObject m_PrefabInstance;
-    private NetworkObject m_SpawnedNetworkObject;
     private XRGrabInteractable m_GrabInteractable;
-    // private NetworkObject m_SpawnedNetworkObject;
 
     private bool m_HasGrabbed = false;
     private bool m_HasLetGo = false;
@@ -18,22 +15,17 @@ public class NetworkItem : NetworkBehaviour
     private Quaternion m_Rotation;
     private Vector3 m_Scale;
 
-    void Start() {
-
-        
-    }
-
     public override void OnNetworkSpawn()
     {
-        // Only the server spawns
+                // Only the server spawns
         m_Position = transform.position;
         m_Rotation = transform.rotation;
         m_Scale = transform.localScale;
-
         m_GrabInteractable = gameObject.GetComponent<XRGrabInteractable>();
 
         if (m_GrabInteractable != null)
         {
+            Debug.Log("Grabbing");
             m_GrabInteractable.selectEntered.AddListener(OnGrabbed);            
             m_GrabInteractable.selectExited.AddListener(OnLetGo);
 
@@ -73,12 +65,11 @@ public class NetworkItem : NetworkBehaviour
                     m_HasLetGo = false;
                     
                 }
-            } else {                
-                
-                transform.position = m_Position;
-                transform.rotation = m_Rotation;
-                transform.localScale = m_Scale;
+            } else {  
 
+                    transform.position = m_Position;
+                    transform.rotation = m_Rotation;
+                    transform.localScale = m_Scale;
             }
         }
    }

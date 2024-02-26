@@ -17,6 +17,7 @@ public class NetworkSpawner : NetworkBehaviour
 
         public override void OnNetworkSpawn()
         {
+            //Debug.Log("NetworkSpawn");
             // Only the server spawns, clients will disable this component on their side
             enabled = IsServer;
 
@@ -24,6 +25,8 @@ public class NetworkSpawner : NetworkBehaviour
             {
                 return;
             }
+
+            //Debug.Log("Deep into NetworkSpawn");
 
             var clientID = NetworkManager.Singleton.LocalClientId;
             m_PrefabInstance = Instantiate(prefabToSpawn);
