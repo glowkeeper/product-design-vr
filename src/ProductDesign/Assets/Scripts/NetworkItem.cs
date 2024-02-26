@@ -10,6 +10,7 @@ public class NetworkItem : NetworkBehaviour
 
     private bool m_HasGrabbed = false;
     private bool m_HasLetGo = false;
+    private bool m_HasMoved = false;
 
     private Vector3 m_Position;
     private Quaternion m_Rotation;
@@ -17,20 +18,20 @@ public class NetworkItem : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-                // Only the server spawns
         m_Position = transform.position;
         m_Rotation = transform.rotation;
         m_Scale = transform.localScale;
+
         m_GrabInteractable = gameObject.GetComponent<XRGrabInteractable>();
 
         if (m_GrabInteractable != null)
         {
-            Debug.Log("Grabbing");
+            //Debug.Log("Grabbing");
             m_GrabInteractable.selectEntered.AddListener(OnGrabbed);            
             m_GrabInteractable.selectExited.AddListener(OnLetGo);
 
         } else {
-            Debug.Log("Cannot Grab");
+            //Debug.Log("Cannot Grab");
         }   
     }
 
@@ -67,9 +68,12 @@ public class NetworkItem : NetworkBehaviour
                 }
             } else {  
 
+                if ( m_HasMoved ) {
+                                   
                     transform.position = m_Position;
                     transform.rotation = m_Rotation;
                     transform.localScale = m_Scale;
+                }
             }
         }
    }
@@ -85,12 +89,13 @@ public class NetworkItem : NetworkBehaviour
    [ClientRpc]
    private void SendInfoToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale)
    {
-        // Debug.Log("Receiving info from server" + position.ToString() + rotation.ToString() + scale.ToString());
+        //Debug.Log("Receiving info from server" + position.ToString() + rotation.ToString() + scale.ToString());
         if( !m_HasGrabbed ) {   
-
+            //Debug.Log("here?");
             m_Position = position; 
             m_Rotation = rotation;
             m_Scale = scale;
+            m_HasMoved = true;
         }
    }
 }
