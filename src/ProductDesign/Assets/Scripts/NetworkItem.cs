@@ -16,6 +16,9 @@ public class NetworkItem : NetworkBehaviour
     private Quaternion m_Rotation;
     private Vector3 m_Scale;
 
+    private ulong m_ClientID;
+    private ulong m_MoveClientID;
+
     public override void OnNetworkSpawn()
     {
         m_Position = transform.position;
@@ -39,11 +42,13 @@ public class NetworkItem : NetworkBehaviour
     {
         //Debug.Log("Trying to do some Grabbing");
         m_HasGrabbed = true;
+        m_HasLetGo = false;
     }
 
     private void OnLetGo(SelectExitEventArgs args)
     {
-        //Debug.Log("Trying to Let Go");        
+        //Debug.Log("Trying to Let Go");    
+        m_HasGrabbed = false;    
         m_HasLetGo = true;
     }  
 
@@ -51,51 +56,41 @@ public class NetworkItem : NetworkBehaviour
    {
         if (m_HasGrabbed) 
         { 
-            SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale);            
+            SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);            
 
-        } else {
-
-            if ( m_HasLetGo ) {
+        } else if ( m_HasLetGo ) {
                 
-                if( transform.hasChanged ) {
+            if( transform.hasChanged ) {
 
-                    SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale);
+                SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
 
-                } else {
-                    
-                    m_HasLetGo = false;
-                    
-                }
-            } else {  
-
-                if ( m_HasMoved ) {
-                                   
-                    transform.position = m_Position;
-                    transform.rotation = m_Rotation;
-                    transform.localScale = m_Scale;
-                }
+            } else {
+                
+                m_HasLetGo = false;
+                
             }
+        } else if (m_HasMoved ) {
+                                
+            transform.position = m_Position;
+            transform.rotation = m_Rotation;
+            transform.localScale = m_Scale;
         }
    }
 
    [ServerRpc(RequireOwnership = false)]
-   private void SendInfoToServerRpc(Vector3 position, Quaternion rotation, Vector3 scale)
+   private void SendInfoToServerRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)
    {        
         // var networkTime = NetworkManager.Singleton.ServerTime.TimeAsFloat;
         // Debug.Log("Sending info to clients" + position.ToString() + rotation.ToString() + scale.ToString());
-        SendInfoToClientRpc(position, rotation, scale);
+        SendInfoToClientRpc(position, rotation, scale, clientID);
    }
 
    [ClientRpc]
-   private void SendInfoToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale)
+   private void SendInfoToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)
    {
-        //Debug.Log("Receiving info from server" + position.ToString() + rotation.ToString() + scale.ToString());
-        if( !m_HasGrabbed ) {   
-            //Debug.Log("here?");
-            m_Position = position; 
-            m_Rotation = rotation;
-            m_Scale = scale;
-            m_HasMoved = true;
-        }
+        m_Position = position; 
+        m_Rotation = rotation;
+        m_Scale = scale;
+        m_HasMoved = true;
    }
 }

@@ -12,8 +12,6 @@ public class NetworkSpawner : NetworkBehaviour
         //private XRGrabInteractable m_GrabInteractable;
         private GameObject m_PrefabInstance;
         private NetworkObject m_SpawnedNetworkObject;
-        
-        private ulong m_ClientID;
 
         public override void OnNetworkSpawn()
         {
