@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "1WMHHB41J01437",
         "name": "com.Unity.CreateWithVR",
-        "processId": 19342,
+        "processId": 11434,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -150,6 +150,36 @@
             "deviceId": "1WMHHB41J01437",
             "name": "com.Unity.CreateWithVR",
             "processId": 19342,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 6434,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 7810,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 10201,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 10327,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHB41J01437",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 11434,
             "exited": false
         }
     ],

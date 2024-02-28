@@ -5,18 +5,19 @@ using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class NetworkItem : NetworkBehaviour
-{        
-    private XRGrabInteractable m_GrabInteractable;
-
+{       
     private bool m_HasGrabbed = false;
     private bool m_HasLetGo = false;
+    private XRGrabInteractable m_GrabInteractable;
+
+    private Rigidbody m_RigidBody;
 
     private Vector3 m_Position;
     private Quaternion m_Rotation;
     private Vector3 m_Scale;
 
     private ulong m_ClientID;
-    private ulong m_MoveClientID = 10000000000000000;
+    private ulong m_MoveClientID;
 
     private const double m_IdleTime = 1000; //milliseconds
     private double m_TimeMove = 0;
@@ -24,6 +25,9 @@ public class NetworkItem : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         m_ClientID = NetworkManager.Singleton.LocalClientId;
+        m_MoveClientID = m_ClientID;
+        
+        m_RigidBody = gameObject.GetComponent<Rigidbody>();
         m_GrabInteractable = gameObject.GetComponent<XRGrabInteractable>();
         if (m_GrabInteractable != null)
         {
@@ -50,14 +54,8 @@ public class NetworkItem : NetworkBehaviour
         m_HasLetGo = true;
     }  
 
-    private void Update() 
-    {
-
-    }
-
     private void FixedUpdate() 
     {
-        var now = System.DateTime.Now.TimeOfDay.TotalMilliseconds;
         if (m_HasGrabbed) 
         { 
             //Debug.Log("Sending info from Grabbed");
@@ -79,12 +77,12 @@ public class NetworkItem : NetworkBehaviour
             }
 
         } else if ( m_MoveClientID != m_ClientID && 
-                    (now - m_TimeMove) < m_IdleTime ) 
+                    (System.DateTime.Now.TimeOfDay.TotalMilliseconds - m_TimeMove) < m_IdleTime ) 
         {
-            //Debug.Log("In here at time " + now);
-            transform.position = m_Position;
-            transform.rotation = m_Rotation;
-            transform.localScale = m_Scale;
+            // Debug.Log("In here at time " + now);
+            // Debug.Log("In here at position " + m_Position.ToString());
+            m_RigidBody.Move(m_Position, m_Rotation);
+            // transform.localScale = m_Scale;
         }
    }
 
