@@ -8,6 +8,7 @@ public class NetworkItem : NetworkBehaviour
 {       
     private bool m_HasGrabbed = false;
     private bool m_HasLetGo = false;
+    private bool m_HasCollided = false;
     private XRGrabInteractable m_GrabInteractable;
 
     private Rigidbody m_RigidBody;
@@ -47,14 +48,18 @@ public class NetworkItem : NetworkBehaviour
         m_HasLetGo = false;
     }
 
-    private void OnLetGo(SelectExitEventArgs args)
+    private void OnClientMove() 
     {
-        //Debug.Log("Trying to Let Go");    
-        m_HasGrabbed = false;    
-        m_HasLetGo = true;
-    }  
+        if ( m_MoveClientID != m_ClientID && 
+                    (System.DateTime.Now.TimeOfDay.TotalMilliseconds - m_TimeMove) < m_IdleTime ) 
+        {            
+            m_HasGrabbed = m_HasLetGo = m_HasCollided = false;
+            m_RigidBody.Move(m_Position, m_Rotation);
+            // transform.localScale = m_Scale;
+        }
+    }
 
-    private void FixedUpdate() 
+    private void GenerateServerMove()
     {
         if (m_HasGrabbed) 
         { 
@@ -72,19 +77,42 @@ public class NetworkItem : NetworkBehaviour
             } else {
                 
                 //Debug.Log("Do I ever get here?");
-                m_HasLetGo = false;
-                
+                m_HasLetGo = false;                
             }
 
-        } else if ( m_MoveClientID != m_ClientID && 
-                    (System.DateTime.Now.TimeOfDay.TotalMilliseconds - m_TimeMove) < m_IdleTime ) 
-        {
-            // Debug.Log("In here at time " + now);
-            // Debug.Log("In here at position " + m_Position.ToString());
-            m_RigidBody.Move(m_Position, m_Rotation);
-            // transform.localScale = m_Scale;
+        } else if ( m_HasCollided ) {
+
+            if( transform.hasChanged ) 
+            {
+                //Debug.Log("Send Collision info from let go");
+                SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
+                transform.hasChanged = false;
+
+            } else {                
+                //Debug.Log("Do I ever get here?");
+                m_HasCollided = false;                
+            }
+
         }
-   }
+    }
+
+    private void OnLetGo(SelectExitEventArgs args)
+    {
+        //Debug.Log("Trying to Let Go");    
+        m_HasGrabbed = false;    
+        m_HasLetGo = true;
+    }  
+
+    void OnCollisionEnter(Collision collision)
+    {
+        m_HasCollided = true;
+    }
+
+    private void FixedUpdate() 
+    {
+        GenerateServerMove();
+        OnClientMove();
+    }
 
    [ServerRpc(RequireOwnership = false)]
    private void SendInfoToServerRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)

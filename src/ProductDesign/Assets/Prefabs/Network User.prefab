@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1460392155
+  GlobalObjectIdHash: 1612787581
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -553,6 +553,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0737fba2bfc8a4aa5b9525ec4c86844b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd42798c87f9f428188a606886f5bc5c, type: 2}
     - target: {fileID: 919132149155446097, guid: 0737fba2bfc8a4aa5b9525ec4c86844b,
         type: 3}
       propertyPath: m_Name

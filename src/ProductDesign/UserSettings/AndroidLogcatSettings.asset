@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "1WMHHB41J01437",
+    "m_SelectedDeviceId": "1WMHHA43L71451",
     "m_SelectedProcess": {
-        "deviceId": "1WMHHB41J01437",
+        "deviceId": "1WMHHA43L71451",
         "name": "com.Unity.CreateWithVR",
-        "processId": 11635,
+        "processId": 5455,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -72,6 +72,12 @@
             "deviceId": "1WMHHA43L71451",
             "name": "com.Unity.CreateWithVR",
             "processId": 6656,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHHA43L71451",
+            "name": "com.Unity.CreateWithVR",
+            "processId": 5455,
             "exited": false
         },
         {
