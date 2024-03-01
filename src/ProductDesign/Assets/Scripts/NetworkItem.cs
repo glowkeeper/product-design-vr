@@ -64,14 +64,14 @@ public class NetworkItem : NetworkBehaviour
         if (m_HasGrabbed) 
         { 
             //Debug.Log("Sending info from Grabbed");
-            SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);            
+            SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);            
 
         } else if ( m_HasLetGo ) {
                 
             if( transform.hasChanged ) 
             {
                 //Debug.Log("Sending info from let go");
-                SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
+                SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
                 transform.hasChanged = false;
 
             } else {
@@ -85,7 +85,7 @@ public class NetworkItem : NetworkBehaviour
             if( transform.hasChanged ) 
             {
                 //Debug.Log("Send Collision info from let go");
-                SendInfoToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
+                SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
                 transform.hasChanged = false;
 
             } else {                
@@ -115,15 +115,15 @@ public class NetworkItem : NetworkBehaviour
     }
 
    [ServerRpc(RequireOwnership = false)]
-   private void SendInfoToServerRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)
+   private void SendMoveToServerRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)
    {        
         // var networkTime = NetworkManager.Singleton.ServerTime.TimeAsFloat;
         //Debug.Log("Sending info to clients" + position.ToString() + rotation.ToString() + scale.ToString());
-        SendInfoToClientRpc(position, rotation, scale, clientID);
+        SendMoveToClientRpc(position, rotation, scale, clientID);
    }
 
    [ClientRpc]
-   private void SendInfoToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)
+   private void SendMoveToClientRpc(Vector3 position, Quaternion rotation, Vector3 scale, ulong clientID)
    {                  
         m_Position = position;
         m_Rotation = rotation;
