@@ -48,18 +48,33 @@ public class NetworkItem : NetworkBehaviour
         m_HasLetGo = false;
     }
 
-    private void OnClientMove() 
+    private void OnLetGo(SelectExitEventArgs args)
+    {
+        //Debug.Log("Trying to Let Go");    
+        m_HasGrabbed = m_HasCollided = false;    
+        m_HasLetGo = true;
+    }  
+
+    void OnCollisionEnter(Collision collision)
+    {
+        m_HasCollided = true;   
+        m_HasLetGo = false;
+        //might collide while being grabbed
+    }
+
+    private void OnMove() 
     {
         if ( m_MoveClientID != m_ClientID && 
                     (System.DateTime.Now.TimeOfDay.TotalMilliseconds - m_TimeMove) < m_IdleTime ) 
         {            
             m_HasGrabbed = m_HasLetGo = m_HasCollided = false;
+            m_MoveClientID = m_ClientID;
             m_RigidBody.Move(m_Position, m_Rotation);
             // transform.localScale = m_Scale;
         }
     }
 
-    private void GenerateServerMove()
+    private void GenerateMove()
     {
         if (m_HasGrabbed) 
         { 
@@ -92,26 +107,13 @@ public class NetworkItem : NetworkBehaviour
                 //Debug.Log("Do I ever get here?");
                 m_HasCollided = false;                
             }
-
         }
-    }
-
-    private void OnLetGo(SelectExitEventArgs args)
-    {
-        //Debug.Log("Trying to Let Go");    
-        m_HasGrabbed = false;    
-        m_HasLetGo = true;
-    }  
-
-    void OnCollisionEnter(Collision collision)
-    {
-        m_HasCollided = true;
     }
 
     private void FixedUpdate() 
     {
-        GenerateServerMove();
-        OnClientMove();
+        GenerateMove();
+        OnMove();
     }
 
    [ServerRpc(RequireOwnership = false)]
