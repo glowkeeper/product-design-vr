@@ -6,9 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class NetworkItem : NetworkBehaviour
 {       
-    private bool m_HasGrabbed = false;
-    private bool m_HasLetGo = false;
-    private bool m_HasCollided = false;
     private XRGrabInteractable m_GrabInteractable;
 
     private Rigidbody m_RigidBody;
@@ -43,77 +40,48 @@ public class NetworkItem : NetworkBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        //Debug.Log("Trying to do some Grabbing");
-        m_HasGrabbed = true;
-        m_HasLetGo = false;
+        //Debug.Log("Sending info from OnGrabbed");
+        SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);  
+        transform.hasChanged = true; 
     }
 
     private void OnLetGo(SelectExitEventArgs args)
     {
-        //Debug.Log("Trying to Let Go");    
-        m_HasGrabbed = m_HasCollided = false;    
-        m_HasLetGo = true;
+        //Debug.Log("Sending info from OnLetGo");
+        SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID); 
+        transform.hasChanged = true; 
     }  
 
     void OnCollisionEnter(Collision collision)
     {
-        m_HasCollided = true;   
-        m_HasLetGo = false;
-        //might collide while being grabbed
+        //Debug.Log("Sending info from OnCollisionEnter");
+        SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
+        transform.hasChanged = true; 
     }
 
-    private void OnMove() 
+    private void DoMove() 
     {
         if ( m_MoveClientID != m_ClientID && 
                     (System.DateTime.Now.TimeOfDay.TotalMilliseconds - m_TimeMove) < m_IdleTime ) 
-        {            
-            m_HasGrabbed = m_HasLetGo = m_HasCollided = false;
-            m_MoveClientID = m_ClientID;
+        { 
             m_RigidBody.Move(m_Position, m_Rotation);
             // transform.localScale = m_Scale;
         }
     }
 
     private void GenerateMove()
-    {
-        if (m_HasGrabbed) 
-        { 
-            //Debug.Log("Sending info from Grabbed");
-            SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);            
-
-        } else if ( m_HasLetGo ) {
-                
-            if( transform.hasChanged ) 
-            {
-                //Debug.Log("Sending info from let go");
-                SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
-                transform.hasChanged = false;
-
-            } else {
-                
-                //Debug.Log("Do I ever get here?");
-                m_HasLetGo = false;                
-            }
-
-        } else if ( m_HasCollided ) {
-
-            if( transform.hasChanged ) 
-            {
-                //Debug.Log("Send Collision info from let go");
-                SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
-                transform.hasChanged = false;
-
-            } else {                
-                //Debug.Log("Do I ever get here?");
-                m_HasCollided = false;                
-            }
-        }
+    {        
+        if( m_MoveClientID == m_ClientID && transform.hasChanged ) 
+        {
+            //Debug.Log("Sending info from let go");
+            SendMoveToServerRpc(transform.position, transform.rotation, transform.localScale, m_ClientID);
+            transform.hasChanged = false; 
+        }        
     }
 
     private void FixedUpdate() 
     {
         GenerateMove();
-        OnMove();
     }
 
    [ServerRpc(RequireOwnership = false)]
@@ -131,7 +99,8 @@ public class NetworkItem : NetworkBehaviour
         m_Rotation = rotation;
         m_Scale = scale;
         m_MoveClientID = clientID;
-        m_TimeMove = System.DateTime.Now.TimeOfDay.TotalMilliseconds;
+        m_TimeMove = System.DateTime.Now.TimeOfDay.TotalMilliseconds;        
+        DoMove();
         //Debug.Log("Me: " + m_ClientID + ", Mover: " + m_MoveClientID);
    }
 }

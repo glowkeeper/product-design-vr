@@ -16,17 +16,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0db9d48b5829d4b30a9a4971c8599eb5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.005
+      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0db9d48b5829d4b30a9a4971c8599eb5,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.005
+      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0db9d48b5829d4b30a9a4971c8599eb5,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.005
+      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0db9d48b5829d4b30a9a4971c8599eb5,
         type: 3}
@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0db9d48b5829d4b30a9a4971c8599eb5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 185.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0db9d48b5829d4b30a9a4971c8599eb5,
         type: 3}
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2265544712
+  GlobalObjectIdHash: 653665884
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
