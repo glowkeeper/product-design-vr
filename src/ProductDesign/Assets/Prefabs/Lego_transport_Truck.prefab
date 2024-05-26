@@ -71,7 +71,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fa682630fa17436a94ab6e6a7d66f41,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4931549860815137863}
+      addedObject: {fileID: 1062191121185520867}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fa682630fa17436a94ab6e6a7d66f41,
         type: 3}
       insertIndex: -1
@@ -88,6 +88,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5759598049191206827}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fa682630fa17436a94ab6e6a7d66f41,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3576340189127313879}
   m_SourcePrefab: {fileID: 100100000, guid: 2fa682630fa17436a94ab6e6a7d66f41, type: 3}
 --- !u!1 &6420901216242722634 stripped
 GameObject:
@@ -95,7 +99,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6186528011392145947}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &4931549860815137863
+--- !u!65 &1062191121185520867
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,8 +118,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35596898, y: 0.09619892, z: 0.08063093}
-  m_Center: {x: 0.057426345, y: 0.13907921, z: -0.23079057}
+  m_Size: {x: 0.35826245, y: 0.10611954, z: 0.08015114}
+  m_Center: {x: 0.058198318, y: 0.13739702, z: -0.2266021}
 --- !u!54 &3574333660683239679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -307,14 +311,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2004405967
+  GlobalObjectIdHash: 3974697306
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 1
   SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  DontDestroyWithOwner: 1
+  AutoObjectParentSync: 0
 --- !u!114 &5759598049191206827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,3 +331,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbec237122154688b120d597b64d2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3576340189127313879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420901216242722634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a98890edb048bda8eb2393eec7e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 1
