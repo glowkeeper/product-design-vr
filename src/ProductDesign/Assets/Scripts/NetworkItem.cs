@@ -11,17 +11,7 @@ public class NetworkItem : NetworkBehaviour
     private Rigidbody m_RigidBody;
     private NetworkObject m_NetObject;
 
-    private Vector3 m_Position;
-    private Quaternion m_Rotation;
-    private Vector3 m_Scale;
-    private Vector3 m_Velocity;
-
-    private bool m_NeedsMoving = false;
-
     private ulong m_ClientID;
-
-    //private const double m_IdleTime = 1000; //milliseconds
-    //private double m_TimeMove = 0;
 
     public override void OnNetworkSpawn()
     {

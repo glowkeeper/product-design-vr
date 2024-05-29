@@ -267,7 +267,7 @@
         "AutoCapture": true
     },
     "m_FilterOptions": {
-        "m_Filter": "Client",
+        "m_Filter": "forward",
         "m_UseRegularExpressions": true,
         "m_MatchCase": false
     },
