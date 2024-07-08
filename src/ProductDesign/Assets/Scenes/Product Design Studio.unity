@@ -850,6 +850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205784165}
+  - component: {fileID: 205784167}
   - component: {fileID: 205784166}
   m_Layer: 0
   m_Name: Screen
@@ -902,6 +903,26 @@ MonoBehaviour:
   - Slide11
   - Slide12
   slideDeckName: SolidworksIntro
+--- !u!114 &205784167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205784164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 383708732
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 0
 --- !u!1 &216286419
 GameObject:
   m_ObjectHideFlags: 0
@@ -7196,7 +7217,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
