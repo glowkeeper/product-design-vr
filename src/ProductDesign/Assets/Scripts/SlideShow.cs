@@ -48,7 +48,7 @@ public class SlideShow : NetworkBehaviour
         {
             slideIndex--;
             Texture2D slide = Resources.Load<Texture2D>(slidesPath + "/" + slideDeckName + "/" + slides[slideIndex]);  
-            Debug.Log("getting back slide" + slides[slideIndex]);  
+            //Debug.Log("getting back slide" + slides[slideIndex]);  
             screenMaterial.SetTexture("_BaseMap", slide);
             SendPresentationShowToServerRpc(slideIndex);
         }
