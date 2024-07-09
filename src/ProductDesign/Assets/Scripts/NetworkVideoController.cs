@@ -8,49 +8,39 @@ public class NetworkVideoController : NetworkBehaviour
 
     [SerializeField] private string m_CameraTag = "MainCamera";
 
-    private bool m_IsServer = false;
-
-    public override void OnNetworkSpawn()
-    {
-        m_IsServer = IsServer; 
-    }
+    private bool m_Play = false;
 
     private void OnTriggerEnter(Collider other)
     {
         //Debug.LogWarning("VIDEOCONTROLLER: in trigger enter");
-        if (other.tag == m_CameraTag && m_IsServer) {  
-            //Debug.LogWarning("VIDEOCONTROLLER: in trigger player enter"); 
-            var doPlay = true;
-            SendVideoPlayToServerRpc(doPlay);
+        if (other.tag == m_CameraTag) {  
+            mVideoPlayer.Play();
+            SendVideoPlayToServerRpc(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-
         //Debug.LogWarning("VIDEOCONTROLLER: in trigger exit");
-        if (other.tag == m_CameraTag && m_IsServer) {    
-            //Debug.LogWarning("VIDEOCONTROLLER: in trigger player exit");        
-            var doPlay = false;
-            SendVideoPlayToServerRpc(doPlay);
+        if (other.tag == m_CameraTag) {               
+            mVideoPlayer.Stop();
+            SendVideoPlayToServerRpc(false);
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void SendVideoPlayToServerRpc(bool doPlay)
     {        
-            // var networkTime = NetworkManager.Singleton.ServerTime.TimeAsFloat;
-            //Debug.Log("Sending info to clients" + position.ToString() + rotation.ToString() + scale.ToString());
             SendVideoPlayToClientRpc(doPlay);
     }
 
     [ClientRpc]
     private void SendVideoPlayToClientRpc(bool doPlay)
     {       
-            if ( doPlay ) {
-                mVideoPlayer.Play();
-            } else {
-                mVideoPlayer.Stop();
-            }
+        if ( doPlay ) {
+            mVideoPlayer.Play();
+        } else {
+            mVideoPlayer.Stop();
+        }
     }
 }

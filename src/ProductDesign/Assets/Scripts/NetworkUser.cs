@@ -5,7 +5,6 @@ using Unity.Netcode;
 
 public class NetworkUser : NetworkBehaviour
 {
-
     [SerializeField] private Transform root;
     [SerializeField] private Transform head;
     [SerializeField] private Transform left;

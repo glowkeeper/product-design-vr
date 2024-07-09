@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class SlideShow : NetworkBehaviour
+public class NetworkSlideShow : NetworkBehaviour
 {
     [SerializeField] private GameObject projectorScreen;
     [SerializeField] private string[] slides;
@@ -11,57 +11,47 @@ public class SlideShow : NetworkBehaviour
     [SerializeField] private string slideDeckName;
 
     private const string slidesPath = "SlideDecks";
-
     private int slideIndex = 0;
     private Material screenMaterial;
 
-    private bool m_IsServer = false;
-
-    public override void OnNetworkSpawn()
-    {
-        m_IsServer = IsServer; 
+    void Start()
+    {        
         Renderer screenRenderer = projectorScreen.GetComponent<Renderer>();
         screenMaterial = screenRenderer.material;
     }
-
-    // void Start()
-    // {        
-    //     Renderer screenRenderer = projectorScreen.GetComponent<Renderer>();
-    //     screenMaterial = screenRenderer.material;
-    // }
     
     public void Forward()
     {
-        if(slideIndex < slides.Length && m_IsServer)
+        if(slideIndex < slides.Length)
         { 
             slideIndex++;
             Texture2D slide = Resources.Load<Texture2D>(slidesPath + "/" + slideDeckName + "/" + slides[slideIndex]);            
-            //Debug.Log("getting back slide" + slides[slideIndex]); 
+            Debug.Log("getting back slide" + slides[slideIndex]); 
             screenMaterial.SetTexture("_BaseMap", slide);
-            SendPresentationShowToServerRpc(slideIndex);
+            SendSlideToServerRpc(slideIndex);
         }
     }
 
     public void Back()
     {
-        if(slideIndex > 0 && m_IsServer)
+        if(slideIndex > 0)
         {
             slideIndex--;
             Texture2D slide = Resources.Load<Texture2D>(slidesPath + "/" + slideDeckName + "/" + slides[slideIndex]);  
-            //Debug.Log("getting back slide" + slides[slideIndex]);  
+            Debug.Log("getting back slide" + slides[slideIndex]);  
             screenMaterial.SetTexture("_BaseMap", slide);
-            SendPresentationShowToServerRpc(slideIndex);
+            SendSlideToServerRpc(slideIndex);
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SendPresentationShowToServerRpc(int slideIndex)
+    private void SendSlideToServerRpc(int slideIndex)
     {        
-            SendPresentationShowToClientRpc(slideIndex);
+            SendSlideToClientRpc(slideIndex);
     }
 
     [ClientRpc]
-    private void SendPresentationShowToClientRpc(int slideIndex)
+    private void SendSlideToClientRpc(int slideIndex)
     {       
         Texture2D slide = Resources.Load<Texture2D>(slidesPath + "/" + slideDeckName + "/" + slides[slideIndex]);  
         screenMaterial.SetTexture("_BaseMap", slide);

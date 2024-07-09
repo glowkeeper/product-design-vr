@@ -24,8 +24,6 @@ public class NetworkSpawner : NetworkBehaviour
                 return;
             }
 
-            //Debug.Log("Deep into NetworkSpawn");
-
             var clientID = NetworkManager.Singleton.LocalClientId;
             m_PrefabInstance = Instantiate(prefabToSpawn);
 
